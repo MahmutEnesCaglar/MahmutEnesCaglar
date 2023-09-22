@@ -1,5 +1,5 @@
 - 👋 Hi, I’m MahmutEnesCaglar
-- 👀 I’m just a little bit crazy student
+- 👀 I’m just a crazy student
 - that's all for now 😘
 
 <!---
