@@ -1,0 +1,43 @@
+NAME = libft.a
+SRCS = ${wildcard ft_*.c}
+# SRCS = ${find . -type f -name *.c}
+
+# SRCS = Get-ChildItem -Recurse -File -Filter "*.c"
+# SRCS = ${shell Get-ChildItem -Recurse -File -Filter "*.c"}
+# SRCS = $(shell powershell -Command "Get-ChildItem -Recurse -File -Filter *.c | ForEach-Object { $_.FullName }")
+OBJS = ${SRCS:.c=.o}
+# OBJS = $(patsubst %.c,%.o,$(SRCS))
+COMP = gcc -c -Wall -Wextra -Werror
+
+all: ${NAME}
+	@echo DONE.
+
+
+${NAME}: compile
+	@echo Archiving...
+	@ar rcs ${NAME} ${OBJS}
+
+compile: ${SRCS}
+	@echo Compiling...
+	@${COMP} ${SRCS}
+
+clean:
+	@echo Cleaning ".o" files...
+	@del /q ${OBJS} 2>nul
+
+fclean: clean
+	@echo deleting archive...
+	@del /q ${NAME} 2>nul
+
+re: fclean all
+
+run: fclean ${NAME}
+	@echo Cleaning up...
+	@make clean 2>&1 >nul
+	@echo finito O7
+
+sayhello: sayhi
+	@echo "hello"2
+
+sayhi:
+	@echo hi
