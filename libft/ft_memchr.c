@@ -1,14 +1,27 @@
-#include "header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macaglar <macaglar@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/27 18:02:49 by macaglar          #+#    #+#             */
+/*   Updated: 2024/10/27 18:54:58 by macaglar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_memchr( void *s, int c, size_t n)
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    char* s1;
-    
-    s1 = s;
-    while(*s1++ && n--)
-        if(*s1 == c)
-            return s1;
-    if (c == 0)
-		return ((void *)s1);
-    return (0);
+	size_t	index;
+
+	index = 0;
+	while (index < n)
+	{
+		if (((unsigned char *)s)[index] == (unsigned char)c)
+			return (((unsigned char *)s) + index);
+		index++;
+	}
+	return (NULL);
 }

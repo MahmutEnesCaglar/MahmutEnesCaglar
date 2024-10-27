@@ -1,7 +1,21 @@
-unsigned int ft_strlen(char const * str)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macaglar <macaglar@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/20 16:28:17 by macaglar          #+#    #+#             */
+/*   Updated: 2024/10/20 16:31:00 by macaglar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	ft_strlen(char *ptr)
 {
-    unsigned int a=0;
-    while(str[a]!='\0')
-        a++;
-    return (a);
+	int	size;
+
+	size = 0;
+	while (*(ptr++) != '\0')
+		size++;
+	return (size);
 }

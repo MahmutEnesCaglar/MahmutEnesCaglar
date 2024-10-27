@@ -1,26 +1,57 @@
-#include "header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macaglar <macaglar@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/27 16:20:45 by macaglar          #+#    #+#             */
+/*   Updated: 2024/10/27 17:54:54 by macaglar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *ft_itoa(int n)
+#include "libft.h"
+
+static int	ft_find_size(int n)
 {
-    char *str;
-    int i=0;
-    int x = n<0?-n:n;
-    if(n == (-2147483648))
-        return ("-2147483648");
-    if(n<0)
-        i++;
-    while(x / 10 > 0 && ++i)
-        x /= 10; 
-    str = (char*)malloc(sizeof(char)*(i+1));
-    x=n<0?-n:n;
+	int	len;
 
-    str[i+1] = '\0';
-    while(x!=0)
-    {
-        str[i--]=x%10+'0';
-        x/=10;
-    }
-    if(i!=-1)
-        str[0]='-';
-    return str;
+	len = 0;
+	if (n < 0)
+	{
+		len ++;
+	}
+	while (n != 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	char			*ptr;
+	int				size;
+	unsigned int	number;
+
+	number = n;
+	size = ft_find_size(n);
+	ptr = (char *)malloc(sizeof(char) * (size + 1));
+	if (!(ptr))
+		return (NULL);
+	ptr[size--] = '\0';
+	if (n == 0)
+		ptr[0] = '0';
+	if (n < 0)
+	{
+		number = n * -1;
+		ptr[0] = '-';
+	}
+	while (number > 0)
+	{
+		ptr[size--] = number % 10 + 48;
+		number = number / 10;
+	}
+	return (ptr);
 }
